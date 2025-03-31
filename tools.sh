@@ -8,7 +8,7 @@ set -o exiterr
 set -o pipefail
 ###################################### End Safe header #######################################################
 source tool_list.txt
-
+source /etc/os-release
 
 if [[ $ID_LIKE == "*debian*" ]]; then
 	echo "Running on Debian-family distro. Executing main code..."
@@ -18,7 +18,7 @@ else
 fi
 
 function main(){
-	for index in TOOLS; do
+	for index in ${TOOLS[@]}; do
 		check_and_install "$index"
 	done
 }
